@@ -13,7 +13,11 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-i
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('public'));
+
+// Static files middleware with explicit paths
+app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set EJS as template engine
 app.set('view engine', 'ejs');
@@ -200,7 +204,13 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong!');
 });
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
-    console.log(`📱 Access the application at: http://localhost:${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server is running on port ${PORT}`);
+        console.log(`📱 Access the application at: http://localhost:${PORT}`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;

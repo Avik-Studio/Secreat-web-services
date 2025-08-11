@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "secrets-web-app",
   "builds": [
     {
       "src": "index.js",
@@ -9,25 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/css/(.*)",
-      "dest": "/public/css/$1"
-    },
-    {
-      "src": "/js/(.*)",
-      "dest": "/public/js/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "index.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "index.js": {
-      "maxDuration": 30
-    }
-  },
-  "regions": ["cle1"]
+  ]
 }
