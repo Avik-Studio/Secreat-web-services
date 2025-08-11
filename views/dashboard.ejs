@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Secrets</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Secrets</span>
+                </div>
+                <nav class="header-nav">
+                    <div class="user-menu">
+                        <span class="user-name">
+                            <i class="fas fa-user"></i>
+                            <%= user.name %>
+                        </span>
+                        <form action="/logout" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-outline">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        
+        <main class="dashboard-main">
+            <div class="welcome-section">
+                <h1>Welcome to Your Secure Dashboard</h1>
+                <p>You've successfully logged in! Your account is protected with industry-standard security measures.</p>
+            </div>
+            
+            <div class="user-info-card">
+                <div class="card-header">
+                    <h2>
+                        <i class="fas fa-user-circle"></i>
+                        Account Information
+                    </h2>
+                </div>
+                <div class="card-content">
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="fas fa-user"></i>
+                            Name:
+                        </div>
+                        <div class="info-value"><%= user.name %></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="fas fa-envelope"></i>
+                            Email:
+                        </div>
+                        <div class="info-value"><%= user.email %></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="fas fa-calendar-alt"></i>
+                            Member Since:
+                        </div>
+                        <div class="info-value"><%= new Date(user.createdAt).toLocaleDateString() %></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="fas fa-shield-alt"></i>
+                            Account Status:
+                        </div>
+                        <div class="info-value">
+                            <span class="status-badge verified">
+                                <i class="fas fa-check-circle"></i>
+                                Verified & Secure
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="security-features">
+                <h2>
+                    <i class="fas fa-lock"></i>
+                    Security Features
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-key"></i>
+                        <h3>Password Protection</h3>
+                        <p>Your password is securely hashed using bcrypt with salt rounds for maximum security.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cookie-bite"></i>
+                        <h3>Secure Cookies</h3>
+                        <p>HttpOnly cookies prevent client-side access and protect against XSS attacks.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>JWT Tokens</h3>
+                        <p>JSON Web Tokens provide stateless authentication with automatic expiration.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <h3>Email Validation</h3>
+                        <p>Comprehensive email format validation ensures data integrity.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="dashboard-footer">
+            <p>&copy; 2024 Secrets App. Your security is our priority.</p>
+        </footer>
+    </div>
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>
